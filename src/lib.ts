@@ -24,11 +24,9 @@ export function camelCaseToSnakeCase(val: string): string {
 
     // Forming the new snake case
 
-    const newMatches = [ ...matches ];
-
     let snakeCase: string = '';
 
-    for (const match of newMatches) {
+    for (const match of matches) {
         const item = match?.groups?.item ?? null;
 
         if (!item) continue;
@@ -44,5 +42,6 @@ export function camelCaseToSnakeCase(val: string): string {
 // Helpers
 
 export class RegexHelper {
-    public static camelCaseItem = /(?<part>[A-Z][a-z0-9]*|[a-z]+[0-9]*|[A-Z])/g;
+    public static camelCaseItem = /(?<item>[A-Z][a-z0-9]*|[a-z]+[0-9]*|[A-Z])/g;
+    public static envTpl = /\{(?<name>[a-zA-Z0-9]+)\}/g;
 }
