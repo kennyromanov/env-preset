@@ -1,4 +1,5 @@
 import { Obj } from '@/types';
+import fs from 'fs';
 
 
 // Functions
@@ -36,6 +37,15 @@ export function camelCaseToSnakeCase(val: string): string {
 
 
     return snakeCase.slice(1);
+}
+
+export function getFile(filename: string): string|null {
+    const isFile = fs.existsSync(filename);
+
+    if (isFile)
+        return fs.readFileSync(filename, 'utf-8');
+    else
+        return null;
 }
 
 

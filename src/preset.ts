@@ -1,10 +1,13 @@
 import { Obj } from '@/types';
-import fs from 'fs';
+import { getFile } from '@/lib';
 
 
 // Functions
 
 export async function getPreset(filename: string): Promise<Obj | null> {
-    const preset = fs.readFileSync(filename, 'utf-8');
+    const preset = getFile(filename);
+
+    if (!preset) return null;
+
     return JSON.parse(preset);
 }

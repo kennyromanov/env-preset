@@ -10,6 +10,7 @@
     "lib": [ "ES2020" ],
     "skipLibCheck": true,
     "resolveJsonModule": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
 
     /* Bundler mode */

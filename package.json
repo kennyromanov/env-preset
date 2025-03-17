@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build:types": "tsc && tsc-alias",
-    "build": "node build.js && npm run build:types",
+    "build": "bin/build && npm run build:types",
     "test": "npm run build && node dist/index.js",
     "prepare": "npm run build"
   },

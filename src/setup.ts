@@ -1,6 +1,7 @@
 import fs from 'fs';
 import * as path from 'path';
 import { ExtraConfig, Obj } from '@/types';
+import { getFile } from '@/lib';
 import { getPreset } from '@/preset';
 import { objToEnv } from '@/env';
 import config from '../.epconfg.json';
@@ -12,6 +13,8 @@ import * as console from "node:console";
 export const CONFIG_NAME = '.epconfg.json';
 
 export const DEFAULT_INPUT_ENV_NAME = '.env.example';
+
+export const DEFAULT_INPUT_ENV = '';
 
 export const DEFAULT_OUTPUT_ENV_NAME = '.env';
 
@@ -50,7 +53,7 @@ export async function init(): Promise<void> {
 
     const envInputFilename = config?.envInput || DEFAULT_INPUT_ENV_NAME;
     const envInputPath = path.join(dir, envInputFilename);
-    const envInput = fs.readFileSync(envInputPath, 'utf-8');
+    const envInput = getFile(envInputPath) ?? DEFAULT_INPUT_ENV;
 
 
     // Getting the presets
