@@ -11,9 +11,9 @@ import * as console from "node:console";
 
 export const CONFIG_NAME = '.epconfg.json';
 
-export const DEFAULT_INPUT_ENV_NAME = '.env.default';
+export const DEFAULT_INPUT_ENV_NAME = '.env.example';
 
-// export const DEFAULT_OUTPUT_ENV_NAME = '.env';
+export const DEFAULT_OUTPUT_ENV_NAME = '.env';
 
 export const DEFAULT_PRESET_NAME = '.presets/prod.json';
 
@@ -46,28 +46,30 @@ export async function init(): Promise<void> {
     // const logging = config?.logging ?? DEFAULT_LOGGING;
 
 
-    // Getting the input env
+    // Getting the input ENV
 
-    const envInputFilename = config?.envInput ?? DEFAULT_INPUT_ENV_NAME;
-
+    const envInputFilename = config?.envInput || DEFAULT_INPUT_ENV_NAME;
     const envInputPath = path.join(dir, envInputFilename);
-
     const envInput = fs.readFileSync(envInputPath, 'utf-8');
 
 
     // Getting the presets
 
     const presetFilename = config.preset ?? DEFAULT_PRESET_NAME;
-
     const presetPath = path.join(dir, presetFilename);
-
     const preset = await getPreset(presetPath) ?? DEFAULT_PRESET;
 
-    // const envOutputFilename = config?.envOutput ?? DEFAULT_OUTPUT_ENV_NAME;
 
+    // Writing the ENV
+
+    const envOutputFilename = config?.envOutput ?? DEFAULT_OUTPUT_ENV_NAME;
     const env = objToEnv(preset);
+    const newEnv = envInput + '\n' + env;
 
-    console.log(envInput + '\n' + env);
+
+    fs.writeFile(envOutputFilename, newEnv.trim(), (err) => {
+        if (err) throw err;
+    });
 }
 
 

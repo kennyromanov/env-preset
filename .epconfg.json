@@ -1,6 +1,6 @@
 {
   "preset": ".presets/prod/foo.json",
-  "envInput": ".env.default",
+  "envInput": ".env.example",
   "envOutput": ".env",
   "logging": 0
 }
