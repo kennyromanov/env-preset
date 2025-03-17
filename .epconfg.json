@@ -1,0 +1,6 @@
+{
+  "preset": ".presets/prod/foo.json",
+  "envInput": ".env.default",
+  "envOutput": ".env",
+  "logging": 0
+}

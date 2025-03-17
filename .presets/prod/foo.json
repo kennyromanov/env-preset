@@ -1,0 +1,10 @@
+{
+  "siteName": "Foo",
+  "siteDomain": "example.com",
+  "siteUrl": "https://{siteDomain}/help",
+
+  "webmasterName": "webmaster",
+  "webmasterEmail": "{webmasterName}@{siteDomain}",
+
+  "debug": 0
+}
