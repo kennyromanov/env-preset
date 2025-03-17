@@ -1,23 +1,27 @@
 {
-  "name": "env-presets",
+  "name": "env-preset",
   "version": "1.0.0",
+  "description": "A library for generating user-friendly ENVs from JSONs",
   "type": "module",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "exports": {
     "import": "./dist/index.js"
+  },
+  "bin": {
+    "env-preset": "bin/run"
   },
   "scripts": {
     "build:types": "tsc && tsc-alias",
     "build": "bin/build && npm run build:types",
-    "test": "npm run build && node dist/index.js",
+    "test": "npm run build && node bin/run",
     "prepare": "npm run build"
   },
   "files": [
     "dist/"
   ],
   "author": "Kenny Romanov",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^22.13.10",
     "dts-bundle-generator": "^9.5.1",
