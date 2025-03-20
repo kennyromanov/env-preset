@@ -4,7 +4,7 @@ import fs from 'fs';
 
 export default defineConfig({
     define: {
-        __config: JSON.parse(fs.readFileSync('./.epconfg.json', 'utf-8')),
+        __config: JSON.parse(fs.readFileSync('./.epconfig.json', 'utf-8')),
     },
     resolve: {
         alias: {

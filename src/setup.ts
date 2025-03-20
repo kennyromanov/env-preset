@@ -4,13 +4,13 @@ import { ExtraConfig, Obj } from '@/types';
 import { getFile } from '@/lib';
 import { getPreset } from '@/preset';
 import { objToEnv } from '@/env';
-import config from '../.epconfg.json';
+import config from '../.epconfig.json';
 import * as console from "node:console";
 
 
 // Constants
 
-export const CONFIG_NAME = '.epconfg.json';
+export const CONFIG_NAME = '.epconfig.json';
 
 export const DEFAULT_INPUT_ENV_NAME = '.env.example';
 
