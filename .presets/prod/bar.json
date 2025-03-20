@@ -6,5 +6,9 @@
   "webmasterName": "webmaster",
   "webmasterEmail": "{webmasterName}@{siteDomain}",
 
+  "helloFromBar": {
+    "bar": "Hello World!"
+  },
+
   "debug": 0
 }

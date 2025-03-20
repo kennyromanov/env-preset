@@ -77,8 +77,12 @@ export function objToEnv(val: Obj): string {
         if (!val.hasOwnProperty(name)) continue;
 
         const value = val[name] ?? '<error>';
+        const isObj = isObject(value);
 
-        newVal[name] = replaceEnvTpl(String(value), newVal);
+        if (isObj)
+            newVal[name] = replaceEnvTpl(JSON.stringify(value), newVal);
+        else
+            newVal[name] = replaceEnvTpl(String(value), newVal);
     }
 
 

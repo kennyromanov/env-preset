@@ -1,4 +1,6 @@
 {
+  "extends": ".presets/prod/bar.json",
+
   "siteName": "Foo",
   "siteDomain": "example.com",
   "siteUrl": "https://{siteDomain}/help",
