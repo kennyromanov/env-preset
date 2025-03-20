@@ -44,7 +44,7 @@ export function arrToEnvStr(val: any[]): string {
     let newVal: string = '';
 
     for (const item of val) {
-        const isObj = isObject(val);
+        const isObj = isObject(item);
 
         if (isObj)
             newVal += ',' + JSON.stringify(item);
