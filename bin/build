@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 
-import esbuild from 'esbuild';
+const esbuild = require('esbuild');
+const babel = require('../babel-plugin.js');
 
 esbuild.build({
     entryPoints: [ 'src/index.ts' ],
     outfile: 'dist/index.js',
     bundle: true,
     platform: 'node',
-    format: 'esm',
+    format: 'cjs',
     sourcemap: false,
     minify: true,
+    plugins: [ babel.plugin() ],
 }).catch(() => process.exit(1));
