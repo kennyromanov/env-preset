@@ -59,7 +59,7 @@ export function getEnvStr(val: any): string {
     const isObj = isObject(val);
     const isArr = isArray(val);
 
-    if (isObj)
+    if (isObj && !isArr)
         return JSON.stringify(val);
     if (isArr)
         return arrToEnvStr(val);
@@ -77,12 +77,8 @@ export function objToEnv(val: Obj): string {
         if (!val.hasOwnProperty(name)) continue;
 
         const value = val[name] ?? '<error>';
-        const isObj = isObject(value);
 
-        if (isObj)
-            newVal[name] = replaceEnvTpl(JSON.stringify(value), newVal);
-        else
-            newVal[name] = replaceEnvTpl(String(value), newVal);
+        newVal[name] = replaceEnvTpl(getEnvStr(value), newVal)
     }
 
 
