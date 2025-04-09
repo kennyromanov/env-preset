@@ -87,10 +87,48 @@ Reference syntax ("extends" directive is optional!):
 4. Compile your presets:
 
 ```shell
+cd ..
 env-preset
 ```
 
 5. **You're all set!**
+
+---
+
+## Reference
+
+1. You can set all the desired preferences in **.epconfig.json**:
+
+```json5
+{
+  "extends": ".presets/prod/bar.json",
+
+  "siteName": "Foo",
+  "siteDomain": "example.com",
+  "siteUrl": "https://{siteDomain}/help",
+
+  "webmasterName": "webmaster",
+  "webmasterEmail": "{webmasterName}@{siteDomain}",
+
+  "debug": 0
+}
+```
+
+2. The **"extends"** directive mixes your config with the target config:
+
+```json5
+{
+  "extends": ".presets/variables.json",
+  "color": "{green}",
+  "secondColor": "{blue}"
+}
+```
+
+3. You can use **arguments** to override our fullfill the config preferences:
+
+```shell
+env-preset --preset .presets/prod.json --output .env
+```
 
 ---
 

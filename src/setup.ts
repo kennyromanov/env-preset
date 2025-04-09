@@ -1,11 +1,19 @@
 import fs from 'fs';
+import minimist from 'minimist';
 import * as path from 'path';
+import * as console from 'node:console';
 import { ExtraConfig, Obj } from '@/types';
 import { getFile } from '@/lib';
 import { getPreset } from '@/preset';
 import { objToEnv } from '@/env';
 import config from '../.epconfig.json';
-import * as console from "node:console";
+
+
+// Third-parties
+
+const processArgs = process.argv?.slice(2) ?? [];
+
+const args = minimist(processArgs);
 
 
 // Constants
@@ -29,6 +37,12 @@ export const DEFAULT_OUTPUT_ENV_NAME = '.env';
 
 const dir = process.cwd();
 
+const inputArg = args?.input ?? null;
+
+const presetArg = args?.preset ?? null;
+
+const outputArg = args?.output ?? null;
+
 
 // Functions
 
@@ -51,21 +65,21 @@ export async function init(): Promise<void> {
 
     // Getting the input ENV
 
-    const envInputFilename = config?.envInput || DEFAULT_INPUT_ENV_NAME;
+    const envInputFilename = inputArg || config?.envInput || DEFAULT_INPUT_ENV_NAME;
     const envInputPath = path.join(dir, envInputFilename);
     const envInput = getFile(envInputPath) ?? DEFAULT_INPUT_ENV;
 
 
     // Getting the preset
 
-    const presetFilename = config.preset ?? DEFAULT_PRESET_NAME;
+    const presetFilename = presetArg ?? config.preset ?? DEFAULT_PRESET_NAME;
     const presetPath = path.join(dir, presetFilename);
     const preset: Obj = await getPreset(presetPath) ?? {};
 
 
     // Writing the ENV
 
-    const envOutputFilename = config?.envOutput ?? DEFAULT_OUTPUT_ENV_NAME;
+    const envOutputFilename = outputArg ?? config?.envOutput ?? DEFAULT_OUTPUT_ENV_NAME;
     const env = objToEnv(preset);
     const newEnv = envInput + '\n' + env;
 
