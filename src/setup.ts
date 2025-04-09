@@ -1,7 +1,7 @@
 import fs from 'fs';
 import minimist from 'minimist';
 import * as path from 'path';
-import * as console from 'node:console';
+import * as console from 'console';
 import { ExtraConfig, Obj } from '@/types';
 import { getFile } from '@/lib';
 import { getPreset } from '@/preset';
