@@ -1,8 +1,14 @@
 {
   "name": "env-preset",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A library for generating user-friendly ENVs from JSONs",
-  "keywords": [ "env", "json to env", "presets", "env presets", "configuration" ],
+  "keywords": [
+    "env",
+    "json to env",
+    "presets",
+    "env presets",
+    "configuration"
+  ],
   "type": "commonjs",
   "main": "dist/index.js",
   "types": "dist/src/index.d.ts",
@@ -29,13 +35,12 @@
     "@babel/preset-env": "^7.26.9",
     "@babel/preset-typescript": "^7.26.0",
     "@types/minimist": "^1.2.5",
-    "@types/node": "^22.14.0",
+    "@types/node": "^22.15.18",
     "dts-bundle-generator": "^9.5.1",
     "esbuild": "^0.25.1",
     "rimraf": "^6.0.1",
     "tsc-alias": "^1.8.11",
-    "typescript": "^5.8.2",
-    "vite": "^6.2.2"
+    "typescript": "^5.8.2"
   },
   "dependencies": {
     "minimist": "^1.2.8"

@@ -37,13 +37,13 @@ EXTENDS=.presets/prod/bar.json
 
 ## Installation
 
-1. The project requires Node v14 or higher. To install it you need to use **npm**:
+1. The project requires Node v14 or higher. To install it, use **npm**:
 
 ```shell
 npm install --save-dev env-preset
 ```
 
-2. After the installation create **.epconfig.json** and check the preferences:
+2. After the installation create **.epconfig.json** and add your preferences:
 
 ```shell
 nano .epconfig.json
@@ -56,6 +56,7 @@ Available options:
   "preset": ".presets/prod.json",
   "envInput": ".env.example",
   "envOutput": ".env",
+  "depth": 3,
   "logging": 0
 }
 ```
@@ -97,7 +98,7 @@ env-preset
 
 ## Reference
 
-1. You can set all the desired preferences in **.epconfig.json**:
+1. You can set all preferences in **.epconfig.json**:
 
 ```json5
 {
@@ -114,7 +115,7 @@ env-preset
 }
 ```
 
-2. The **"extends"** directive mixes your config with the target config:
+2. The **"extends"** directive mixes your config with the target one:
 
 ```json5
 {
@@ -124,7 +125,7 @@ env-preset
 }
 ```
 
-3. You can use **arguments** to override our fullfill the config preferences:
+3. You can use **CLI** to override the config:
 
 ```shell
 env-preset --preset .presets/prod.json --output .env

@@ -35,13 +35,15 @@ export const DEFAULT_OUTPUT_ENV_NAME = '.env';
 
 // Variables
 
-const dir = process.cwd();
+export const dir = process.cwd();
 
-const inputArg = args?.input ?? null;
+export const inputArg = args?.input ?? null;
 
-const presetArg = args?.preset ?? null;
+export const presetArg = args?.preset ?? null;
 
-const outputArg = args?.output ?? null;
+export const outputArg = args?.output ?? null;
+
+export const presetDepthArg = args?.depth ?? null;
 
 
 // Functions
@@ -60,8 +62,6 @@ export async function init(): Promise<void> {
 
     const config = await getConfig();
 
-    // const logging = config?.logging ?? DEFAULT_LOGGING;
-
 
     // Getting the input ENV
 
@@ -74,7 +74,8 @@ export async function init(): Promise<void> {
 
     const presetFilename = presetArg ?? config.preset ?? DEFAULT_PRESET_NAME;
     const presetPath = path.join(dir, presetFilename);
-    const preset: Obj = await getPreset(presetPath) ?? {};
+    const presetDepth = presetDepthArg ?? config?.depth ?? DEFAULT_PRESET_DEPTH;
+    const preset: Obj = await getPreset(presetPath, presetDepth) ?? {};
 
 
     // Writing the ENV

@@ -2,5 +2,6 @@
   "preset": ".presets/prod/foo.json",
   "envInput": ".env.example",
   "envOutput": ".env",
+  "depth": 3,
   "logging": 0
 }
