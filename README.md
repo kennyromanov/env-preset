@@ -30,7 +30,6 @@ WEBMASTER_NAME=webmaster
 WEBMASTER_EMAIL=webmaster@example.com
 HELLO_FROM_BAR={"bar":"Hello World!"}
 DEBUG=0
-EXTENDS=.examples/prod/bar.json
 ```
 
 ---
@@ -43,66 +42,42 @@ EXTENDS=.examples/prod/bar.json
 npm install --save-dev env-preset
 ```
 
-2. After the installation create **.epconfig.json** and add your preferences:
+2. After the installation create **.epconfig.json** and enter your preferences:
 
 ```shell
 nano .epconfig.json
 ```
 
-Available options:
+Available preferences:
 
 ```json
 {
-  "preset": ".examples/prod.json",
+  "input": ".examples/prod/foo.json",
   "envInput": ".env.example",
-  "envOutput": ".env",
+  "output": ".env",
   "depth": 3,
+  "objDepth": 3,
   "logging": 0
 }
 ```
 
-3. Create your **presets** and add it to the config:
+3. Compile your **ENVs**:
 
 ```shell
-mkdir .examples && cd .examples
-nano prod.json
+npx env-preset
 ```
 
-Reference syntax ("extends" directive is optional!):
-
-```json5
-{
-  "extends": ".examples/prod/bar.json",
-
-  "siteName": "Foo",
-  "siteDomain": "example.com",
-  "siteUrl": "https://{siteDomain}/help",
-
-  "webmasterName": "webmaster",
-  "webmasterEmail": "{webmasterName}@{siteDomain}",
-
-  "debug": 0
-}
-```
-
-4. Compile your presets:
-
-```shell
-cd ..
-env-preset
-```
-
-5. **You're all set!**
+**You're all set!**
 
 ---
 
-## Reference
+## Tips & Tricks
 
 1. You can set all preferences in **.epconfig.json**:
 
-```json5
+```json
 {
-  "extends": ".examples/prod/bar.json",
+  "@extends": ".examples/prod/bar.json",
 
   "siteName": "Foo",
   "siteDomain": "example.com",
@@ -115,11 +90,11 @@ env-preset
 }
 ```
 
-2. The **"extends"** directive mixes your config with the target one:
+2. The **"@extends"** directive mixes your ENV with the target one:
 
-```json5
+```json
 {
-  "extends": ".examples/variables.json",
+  "@extends": ".examples/variables.json",
   "color": "{green}",
   "secondColor": "{blue}"
 }
@@ -128,7 +103,7 @@ env-preset
 3. You can use **CLI** to override the config:
 
 ```shell
-env-preset --preset .examples/prod.json --output .env
+env-preset --input .examples/prod.json --output .env
 ```
 
 ---
