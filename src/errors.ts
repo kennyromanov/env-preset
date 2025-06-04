@@ -14,18 +14,3 @@ export class BaseWarning extends BaseThrowable {
 export class BaseError extends BaseThrowable {
     public name = 'BaseError';
 }
-
-
-// JSON Errors
-
-export class JsonThrowable extends BaseThrowable {
-    public name = 'JsonThrowable';
-}
-
-export class JsonError extends JsonThrowable {
-    public name = 'JsonError';
-}
-
-export class JsonParseError extends JsonThrowable {
-    public name = 'JsonParseError';
-}

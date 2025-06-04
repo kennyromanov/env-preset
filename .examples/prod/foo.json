@@ -1,5 +1,5 @@
 {
-  "extends": ".presets/prod/bar.json",
+  "@extends": ".examples/prod/bar.json",
 
   "siteName": "Foo",
   "siteDomain": "example.com",

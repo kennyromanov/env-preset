@@ -1,12 +1,11 @@
 export type Obj<T = any> = Record<string, T>;
 
 export type Config = {
-    envInput?: string | 0,
-    envOutput: string,
-    depth: number,
-    logging: number,
-};
-
-export type ExtraConfig = Config & {
-    preset: string,
+    input?: string|null,
+    envInput?: string|null,
+    output?: string|null,
+    depth?: number|null,
+    objDepth?: number|null,
+    logging?: number|null,
+    errorLogging?: number|null,
 };

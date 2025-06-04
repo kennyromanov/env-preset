@@ -1,7 +1,8 @@
 {
-  "preset": ".presets/prod/foo.json",
+  "input": ".examples/prod/foo.json",
   "envInput": ".env.example",
-  "envOutput": ".env",
+  "output": ".env",
   "depth": 3,
+  "objDepth": 3,
   "logging": 0
 }

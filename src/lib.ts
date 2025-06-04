@@ -53,5 +53,4 @@ export function getFile(filename: string): string|null {
 
 export class RegexHelper {
     public static camelCaseItem = /(?<item>[A-Z][a-z0-9]*|[a-z]+[0-9]*|[A-Z])/g;
-    public static envTpl = /\{(?<name>[a-zA-Z0-9]+)\}/g;
 }

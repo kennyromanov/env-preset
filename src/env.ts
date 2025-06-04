@@ -1,97 +1,53 @@
 import { Obj } from '@/types';
-import { isObject, isArray, camelCaseToSnakeCase, RegexHelper } from '@/lib';
-
-export function getEnvTpl(val: string): string[] {
-
-    // Matching the TPL
-
-    const matches = val?.matchAll(RegexHelper.envTpl);
-
-    if (!matches) return [];
+import {camelCaseToSnakeCase, isArray, isObject} from '@/lib';
 
 
-    // Getting the TPL
+// Constants
 
-    const result: string[] = [];
+export const DEFAULT_OBJ_DEPTH = 3;
 
-    for (const match of matches) {
-        const name = match?.groups?.name ?? null;
 
-        if (!name) continue;
+export function objToEnv(val: Obj, depth: number = DEFAULT_OBJ_DEPTH): string {
 
-        result.push(name);
+    // Doing some checks
+
+    if (depth <= 0) throw new Error(`Unable to get the env: The object is too deep: '${depth}'`);
+
+
+    // Defining some variables
+
+    let result: string = '';
+
+
+    // Defining some functions
+
+    const add = (name: string, val: any): void => {
+        result += '\n' + camelCaseToSnakeCase(name) + '=' + val;
     }
 
-    return result;
-}
 
-export function replaceEnvTpl(val: string, env: Obj): string {
-    const items = getEnvTpl(val);
-    let result = val;
-
-    for (const name of items) {
-        const value = env[name] ?? null;
-
-        if (!value) continue;
-
-        result = result.replace('{' + name + '}', value);
-    }
-
-    return result;
-}
-
-export function arrToEnvStr(val: any[]): string {
-    let newVal: string = '';
-
-    for (const item of val) {
-        const isObj = isObject(item);
-
-        if (isObj)
-            newVal += ',' + JSON.stringify(item);
-        else
-            newVal += ',' + String(item);
-    }
-
-    return newVal.slice(1);
-}
-
-export function getEnvStr(val: any): string {
-    const isObj = isObject(val);
-    const isArr = isArray(val);
-
-    if (isObj && !isArr)
-        return JSON.stringify(val);
-    if (isArr)
-        return arrToEnvStr(val);
-    else
-        return String(val);
-}
-
-export function objToEnv(val: Obj): string {
-
-    // Collapsing all the TPL
-
-    const newVal: Obj = {};
+    // Iterating for each property
 
     for (const name in val) {
         if (!val.hasOwnProperty(name)) continue;
 
         const value = val[name] ?? '<error>';
 
-        newVal[name] = replaceEnvTpl(getEnvStr(value), newVal)
-    }
 
+        // Transforming the value
 
-    // Forming the ENV
+        if (isArray(value)) add(name, value.map(i => {
+            if (isObject(i))
+                return JSON.stringify(value);
+            else
+                return i;
+        }));
 
-    let result: string = '';
+        else if (isObject(value))
+            add(name, JSON.stringify(value));
 
-    for (const name in newVal) {
-        if (!val.hasOwnProperty(name)) continue;
-
-        const value = newVal[name] ?? '<error>';
-
-        result += '\n' + camelCaseToSnakeCase(name) + '=' + getEnvStr(value);
+        else
+            add(name, value);
     }
 
 
