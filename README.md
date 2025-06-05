@@ -6,7 +6,7 @@ The utility allows you to easily template your .env files by mapping it in .json
 
 ```json
 {
-  "extends": ".examples/prod/bar.json",
+  "@extends": ".examples/prod/bar.json",
 
   "siteName": "Foo",
   "siteDomain": "example.com",
@@ -57,7 +57,8 @@ Available preferences:
   "output": ".env",
   "depth": 3,
   "objDepth": 3,
-  "logging": 0
+  "logging": 0,
+  "errorLogging": 1
 }
 ```
 
@@ -77,16 +78,9 @@ npx env-preset
 
 ```json
 {
-  "@extends": ".examples/prod/bar.json",
-
-  "siteName": "Foo",
-  "siteDomain": "example.com",
-  "siteUrl": "https://{siteDomain}/help",
-
-  "webmasterName": "webmaster",
-  "webmasterEmail": "{webmasterName}@{siteDomain}",
-
-  "debug": 0
+  "input": ".configs/prod.json",
+  "output": ".env",
+  "errorLogging": 0
 }
 ```
 
